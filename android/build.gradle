@@ -1,0 +1,79 @@
+group 'com.outsource.ana.login'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.6.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        //flatDir { dirs "$projectDir/android/libs" }
+       /* flatDir { dirs new File(".").absolutePath+"/android/libs/" }
+        flatDir { dirs "libs/" }
+        flatDir { dirs "../android/libs/" }*/
+
+        //  flatDir { dirs  rootProject.files("android/libs") }
+       // flatDir { dirs rootProject.files("libs") }
+        /*flatDir {
+          //  dirs 'libs'
+            dirs project(':AnaSDKManager').file('libs')
+        }*/
+        flatDir {
+            dirs 'libs'
+        }
+       // flatDir{ dirs 'D:\\Projects\\Flutter\\ana_sdk\\android_ana_sdk\\AnaSDKManager\\build\\outputs\\aar\\' }
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 31
+    namespace = "com.outsource.ana.login"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+}
+
+dependencies {
+    //compile(name:'AnaSDKManager-release', ext:'aar')
+    //implementation files('src/main/libs/AnaSDKManager-release.aar')
+    //implementation project(":AnaSDKManager", configuration = "default")
+  //  implementation files('libs/AnaSDKManager-release.aar')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+   // api project(':AnaSDKManager')
+    implementation('com.outsource.ana.anasdkmanager:AnaSDKManager-release@aar'){
+        exclude group: "com.squareup.okhttp3", module: 'okhttp3'
+        exclude group: "androidx.localbroadcastmanager:localbroadcastmanager", module: 'androidx.localbroadcastmanager'
+    }
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation "com.squareup.okhttp3:okhttp:4.8.0"
+   // implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+}
