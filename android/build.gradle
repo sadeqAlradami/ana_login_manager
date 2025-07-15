@@ -34,14 +34,22 @@ rootProject.allprojects {
         }
        // flatDir{ dirs 'D:\\Projects\\Flutter\\ana_sdk\\android_ana_sdk\\AnaSDKManager\\build\\outputs\\aar\\' }
     }
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.webkit:webkit:1.8.0'
+        }
+    }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.outsource.ana.login'
+    }
     compileSdkVersion 31
-    namespace = "com.outsource.ana.login"
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -57,6 +65,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
+        multiDexEnabled true
     }
 }
 

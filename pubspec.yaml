@@ -10,13 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  websafe_svg: ^3.0.0+4
-  url_launcher: ^6.0.18
+  websafe_svg: ^3.0.1+1
+  url_launcher: ^6.2.2
+  logger: ^2.1.0
+  flutter_inappwebview: ^6.1.5
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -34,3 +37,9 @@ flutter:
         pluginClass: LoginPlugin
       ios:
         pluginClass: AnaLoginManagerPlugin
+#      windows:
+#        pluginClass: AnaLoginManagerWeb
+#        fileName: ana_login_manager_web.dart
+      web:
+        pluginClass: AnaLoginManagerWeb
+        fileName: ana_login_manager_web.dart

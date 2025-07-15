@@ -49,7 +49,10 @@ class LoginPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       }
 
     } else if (call.method == "login") {
-      AnaLoginManager.login(activity, arg?.get("scope") as String?, object : AnaLoginManager.AnaLoginChangeCallback {
+//      Log.d("::::::::::arg", arg.toString());
+//      val consentMode = arg?.get("consentMode") as String?;
+//      Log.d("::::::::::consM",consentMode?.toString());
+      AnaLoginManager.login(activity, arg?.get("scope") as String?, arg?.get("consentMode") as String?,object : AnaLoginManager.AnaLoginChangeCallback {
         override fun onSuccess(result: LoginResult?) {
           Log.d("login Success result:", result.toString())
           resultCallback?.success(result?.toString())
