@@ -1,6 +1,4 @@
-package android
-
-group 'com.outsource.ana.login'
+ group 'com.outsource.ana.login'
 version '1.0-SNAPSHOT'
 
 buildscript {
