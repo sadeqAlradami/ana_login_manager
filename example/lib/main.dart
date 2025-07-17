@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    AnaLoginManager.init("ykb_lite_app");
+    AnaLoginManager.init("your_app_id");
   }
 
   @override
